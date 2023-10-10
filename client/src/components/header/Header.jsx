@@ -3,9 +3,9 @@ import { SearchOutlined,HomeOutlined,ShoppingCartOutlined,CopyOutlined,UserOutli
 
 import { Badge, Input } from 'antd';
 
-export default function Header() {
+const Header = () => {
   return (
-    <div className='border-b mb-6'>
+<div className='border-b mb-6'>
         <header className='py-4 px-6 flex justify-between items-center gap-10'>
             <div className="logo">
                 <a href="/"><h2 className='text-2xl font-semibold md:text-4xl'>LOGO</h2></a>
@@ -58,3 +58,5 @@ export default function Header() {
     </div>
   )
 }
+
+export default Header

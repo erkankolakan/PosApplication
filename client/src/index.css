@@ -5,8 +5,14 @@
 body{
   margin: 0;
   font-family: 'Electrolize', sans-serif;
+  overflow: hidden;
 }
 
 .ant-btn-primary{
   background-color: #1677ff;
+}
+
+/* Kaydırma çubuğu stilleri */
+::-webkit-scrollbar {
+  overflow: hidden;
 }

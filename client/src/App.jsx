@@ -3,13 +3,30 @@ import React from 'react';
 
 //components
 import Header from './components/header/Header';
+import Categories from './components/categories/Categories';
 
 
 function App() {
   return (
-    <div >
+    <>
       <Header/>
-    </div>
+      <div className="home px-6 flex justify-between gap-10  ">
+
+        <div className="categories flex-1 max-h-[85vh] snap-proximity overflow-y-auto">
+          <Categories/>
+        </div>
+
+        <div className="products flex-[8]">
+          <div>products</div>
+        </div>
+
+        <div className="card">
+          <div>card Totals</div>
+        </div>
+
+      </div>
+
+    </>
   );
 }
 
