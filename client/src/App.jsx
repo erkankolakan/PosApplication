@@ -4,6 +4,7 @@ import React from 'react';
 //components
 import Header from './components/header/Header';
 import Categories from './components/categories/Categories';
+import Products from './components/products/Products';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         </div>
 
         <div className="products flex-[8]">
-          <div>products</div>
+          <Products/>
         </div>
 
         <div className="card">
