@@ -5,6 +5,7 @@ import React from 'react';
 import Header from './components/header/Header';
 import Categories from './components/categories/Categories';
 import Products from './components/products/Products';
+import CartsTotals from './components/carts/CartTotals';
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
       <Header/>
       <div className="home px-6 flex justify-between gap-10  ">
 
-        <div className="categories flex-1 max-h-[85vh] snap-proximity overflow-y-auto">
+        <div className="categories  max-h-[85vh] snap-proximity overflow-y-auto">
           <Categories/>
         </div>
 
@@ -21,8 +22,8 @@ function App() {
           <Products/>
         </div>
 
-        <div className="card">
-          <div>card Totals</div>
+        <div className="cart-wraper min-w-[300px] md:-mr-[24px] md:-mt-[24px] border-l">
+          <div><CartsTotals/></div>
         </div>
 
       </div>
