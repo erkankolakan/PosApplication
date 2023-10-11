@@ -12,13 +12,13 @@ function App() {
   return (
     <>
       <Header/>
-      <div className="home px-6 flex justify-between gap-10  ">
+      <div className="home px-6 flex flex-col md:flex-row justify-between gap-10  md:pb-0 pb-16 ">
 
         <div className="categories  max-h-[85vh] snap-proximity overflow-y-auto">
           <Categories/>
         </div>
 
-        <div className="products flex-[8]">
+        <div className="products flex-[8] h-[100vh] overflow-y-auto pb-0 md:pb-32">
           <Products/>
         </div>
 

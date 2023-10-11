@@ -4,17 +4,48 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
+
 body{
   margin: 0;
   font-family: 'Electrolize', sans-serif;
-  overflow: hidden;
 }
+
 
 .ant-btn-primary{
   background-color: #1677ff;
 }
 
 /* Kaydırma çubuğu stilleri */
-::-webkit-scrollbar {
-  overflow: hidden;
+
+
+
+
+  /* Kaydırma çubuğu için temel stiller */
+  ::-webkit-scrollbar {
+    width: 12px; /* Genişlik ayarlayabilirsiniz */
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #d9d9d9; /* Kaydırma çubuğu rengi */
+    border-radius:0px; /* Köşe yuvarlama ayarlayabilirsiniz */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #bfbfbf; /* Kaydırma çubuğu rengi (fare üzerine gelindiğinde) */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Kaydırma çubuğu yolu rengi */
+  }
+
+@media (min-width:768px) {
+
+  body{
+    overflow: hidden;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
 }
