@@ -29,7 +29,7 @@ const Header = () => {
                             <span className='md:text-xs  text-[10px]'>Sepet</span>
                     </Link>
                 </Badge>
-                <Link to={"/"} className='menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center'>
+                <Link to={"/bills"} className='menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center'>
                     <CopyOutlined className='md:text-2xl text-xl'/>
                     <span className='md:text-xs  text-[10px]'>Fatura</span>
                 </Link>
