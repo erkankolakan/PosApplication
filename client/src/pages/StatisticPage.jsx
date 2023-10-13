@@ -99,7 +99,7 @@ const StatisticPage = () => {
   return (
     <>
       <Header />
-      <div className="px-6">
+      <div className="px-6 md:pb-0 pb-20">
         <h1 className="text-4xl text-center font-semibold  mb-4">
           İstatistiklerim
         </h1>
@@ -117,9 +117,9 @@ const StatisticPage = () => {
             <StatisticCard title={"Toplam Ürün"} amount={"28"} img={"images/product.png"}/>
           </div>
 
-          <div className="flex justify-between ">
-            <div ><Area {...config} /></div>
-            <div ><Pie {...config2} /></div>
+          <div className="flex justify-evenly items-center gap-10 lg:flex-row flex-col ">
+            <div className="lg:w-1/2 lg:h-full h-72" ><Area {...config} /></div>
+            <div className="lg:w-1/2 lg:h-full h-72" ><Pie {...config2} /></div>
           </div>
         </div>
       </div>
