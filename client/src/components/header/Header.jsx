@@ -33,7 +33,7 @@ const Header = () => {
                     <CopyOutlined className='md:text-2xl text-xl'/>
                     <span className='md:text-xs  text-[10px]'>Fatura</span>
                 </Link>
-                <Link to={"/"} className='menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center'>
+                <Link to={"/customers"} className='menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center'>
                     <UserOutlined className='md:text-2xl text-xl'/>
                     <span className='md:text-xs  text-[10px]'>Müşteriler</span>
                 </Link>
