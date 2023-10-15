@@ -3,31 +3,31 @@ const mongoose = require("mongoose")
 const BillSchema = new mongoose.Schema({
     costomerName: {
         type: String,
-        required: true,
+        require:true
     },
     costomerPhoneNumber: {
         type: String,
-        required: true,
+        require:true
     },
     paymentMode: {
         type: String,
-        required: true,
+        require:true
     },
     cartItems: {
         type: Array,
-        required: true,
+        require:true
     },
     subTotal: {
         type: Number,
-        required: true,
+        require:true
     },
     tax: {
         type: Number,
-        required: true,
+        require:true
     },
     totalAmount: {
         type: Number,
-        required: true,
+        require:true
     },
 },{timestamps:true} //-> oluşturduğu zamanı otomatik not alır
 )

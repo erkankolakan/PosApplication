@@ -3,15 +3,15 @@ const mongoose = require("mongoose")
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        require:true
     },
     email: {
         type: String, 
-        required: true,
+        require:true
     },
     password: {
         type: String, //-> toplama çıkarma yapmayacağımız için değeri number olarak almamıza gerek yok.
-        required: true,
+        require:true
     }
 },{timestamps:true} //-> oluşturduğu zamanı otomatik not alır
 )
