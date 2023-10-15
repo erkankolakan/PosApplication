@@ -38,7 +38,23 @@ const Register = () => {
                     <Form.Item
                         label="Şifre Tekrar"
                         name="passwordAgain"
-                        rules={[{ required: true, message: 'Şifre Tekrar alanı boş bırakılamaz!' }]}
+                        dependencies={["password"]}
+                        
+                        rules={[
+                            { required: true, message: 'Şifre Tekrar alanı boş bırakılamaz!' },
+                            {
+                              required: true,
+                              message: 'Şifreler eşleşmiyor',
+                            },
+                            ({ getFieldValue }) => ({
+                              validator(_, value) {
+                                if (!value || getFieldValue('password') === value) {
+                                  return Promise.resolve();
+                                }
+                                return Promise.reject(new Error('Şifreler eşleşmiyor'));
+                              },
+                            }),
+                    ]}
                     >
                         <Input.Password/>
                     </Form.Item>
