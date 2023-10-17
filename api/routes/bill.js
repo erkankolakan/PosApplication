@@ -16,8 +16,7 @@ router.get("/get-all" , async(req, res) => {
 
 router.post("/add-bill" ,  async(req, res) => {
     try {
-        const newBill = await new Bill(req.body)
-        await newBill.save()
+        await Bill.create(req.body)
         res.status(200).json("başarı bir şekilde bill oluşturuldu")
     } catch (error) {
         console.log(error);

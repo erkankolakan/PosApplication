@@ -16,8 +16,7 @@ router.get("/get-all" , async(req, res) => {
 
 router.post("/add-product" ,  async(req, res) => {
     try {
-        const newProduct = await new Product(req.body)
-        await newProduct.save()
+        await Product.create(req.body)
         res.status(200).json("başarı bir şekilde product oluşturuldu")
     } catch (error) {
         console.log(error);
@@ -26,12 +25,7 @@ router.post("/add-product" ,  async(req, res) => {
 
 router.put("/update-product", async(req , res) =>{
     try {
-        await Product.findOneAndUpdate({_id:req.body.productId}, {
-            title: req.body.title,
-            img: req.body.img,
-            price: req.body.price,
-            category: req.body.category,
-        });
+        await Product.findOneAndUpdate({_id:req.body.productId}, req.body);
         res.status(200).json("ürün güncellendi")
     } catch (error) {
         console.log(error);
