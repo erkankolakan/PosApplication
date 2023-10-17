@@ -21,21 +21,25 @@ router.post("/register", async(req, res) => {
 })
 
 //login
-router.post("/register", async(req, res) => {
+router.post("/login", async(req, res) => {
     try {
-        await User.create({
-            username,
-            email,
-            password: hashedPassword
-        })
+        const user = await User.findOne({email: req.body.email})
+        !user && res.status(404).send({error: "User not found"})
 
-        res.status(200).json("A new user created successfully")
+        const validatePassword = await bcrypt.compare(
+            req.body.password, user.password
+        );
+
+        if (!validatePassword) {
+            return res.status(403).send("Invalid Password")
+        }
+        res.send(200).json(user)
+
+
     } catch (error) {
         console.log(error);
     }
 })
-
-
 
 
 
