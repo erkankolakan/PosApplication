@@ -9,6 +9,7 @@ const app = express()
 //routes
 const categoryRoute = require("./routes/categories")
 const productsRoute = require("./routes/products")
+const billsRoute = require("./routes/bill")
 
 
 dotenv.config() //env dosyasıne erişmemizi sağlar
@@ -28,6 +29,7 @@ app.use(express.json());
 
 app.use("/api/categories" , categoryRoute)
 app.use("/api/products" , productsRoute)
+app.use("/api/bill" , billsRoute)
 
 
 const port = 5000
