@@ -11,6 +11,7 @@ const categoryRoute = require("./routes/categories")
 const productsRoute = require("./routes/products")
 const billsRoute = require("./routes/bill")
 const authRoute = require("./routes/auth")
+const userRoute = require("./routes/users")
 
 
 dotenv.config() //env dosyasıne erişmemizi sağlar
@@ -32,6 +33,7 @@ app.use("/api/categories" , categoryRoute)
 app.use("/api/products" , productsRoute)
 app.use("/api/bill" , billsRoute)
 app.use("/api/auth" , authRoute)
+app.use("/api/users" , userRoute)
 
 
 const port = 5000
