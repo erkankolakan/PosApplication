@@ -10,7 +10,7 @@ router.get("/get-all", async (req , res) => {
         res.send(categories)
         // res.status(200).json(categories)
     } catch (error) {
-        res.status(200).json(error)
+        res.status(500).json(error)
     }
 })
 
@@ -21,7 +21,7 @@ router.post("/add-category" , async (req, res) => {
         res.status(200).json("Item added successfully")
 
     } catch (error) {
-        res.status(200).json(error)
+        res.status(500).json(error)
         res.status(400).json("error")
     }
 } )
@@ -33,7 +33,7 @@ router.put("/update-category", async (req , res) => {
 
     } catch (error) {
         // res.status(500).json({ error: "Error updating category" });
-        res.status(200).json(error)
+        res.status(500).json(error)
     }
 })
 
@@ -44,7 +44,7 @@ router.delete("/delete-category", async (req , res) => {
         res.status(200).json("Item deleted successfully");
     } catch (error) {
         // res.status(500).json({ error: "Error updating category" });
-        res.status(200).json(error)
+        res.status(500).json(error)
     }
 })
 
