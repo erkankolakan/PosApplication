@@ -9,7 +9,7 @@ router.get("/get-all" , async(req, res) => {
         const bills = await Bill.find();
         res.send(bills)
     }catch (error) {
-        console.log(error);
+        res.status(200).json(error)
     }
 })
 
@@ -19,7 +19,7 @@ router.post("/add-bill" ,  async(req, res) => {
         await Bill.create(req.body)
         res.status(200).json("başarı bir şekilde bill oluşturuldu")
     } catch (error) {
-        console.log(error);
+        res.status(200).json(error)
     }
 })
 
