@@ -1,0 +1,3 @@
+.category-item{
+    @apply bg-yesil text-white hover:bg-tomato rounded-sm transition-all cursor-pointer px-6 py-10 text-center min-w-[145px] flex justify-center items-center;
+}

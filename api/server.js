@@ -26,8 +26,8 @@ const connect = async() => {
 }
 
 //middlewares
+app.use(cors()) //-> cors farklı urlerden senin API ne istek atılmasını sağlar istersen bir URL yazarak sadece o URL nin senin apine erişmesine izin verebilirsin.
 app.use(express.json());
-// app.use(cors()) //-> normalde bu paketi depolarken hata almamak için kullanırız ama express.json() gelen veriyi json a çevirdiği için buna gerek yoktur. Sadece gelen veriyi json a çevirmen yeterli.
 
 app.use("/api/categories" , categoryRoute)
 app.use("/api/products" , productsRoute)

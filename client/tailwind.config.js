@@ -11,7 +11,7 @@ module.exports = {
       
       colors: {
         "tomato": "#ff6347",
-        "yesil" :"rgb(21 128 61)"
+        "yesil" :"#5BB318"
       },
     },
   },
