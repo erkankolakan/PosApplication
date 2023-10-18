@@ -3,7 +3,7 @@ import "./style.css";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, message } from "antd";
 
-const Categories = () => {
+const Categories = ({categories , setCategories}) => {
     const [isAddModalOpen, setIsisAddModalOpen] = useState(false);
 
     const [form] = Form.useForm();
@@ -20,6 +20,7 @@ const Categories = () => {
               // İstek başarılı bir şekilde tamamlandı, burada işlemlerinizi gerçekleştirebilirsiniz.
               message.success("Kategori Eklendi")
               form.resetFields()
+              setCategories([...categories, values])
           } else {
             message.warning("Kategori eklenemedi")
           }
@@ -27,29 +28,19 @@ const Categories = () => {
             console.log(error);
         }
     }
+
   return (
-    <ul className="flex  gap-4 text-lg md:flex-col py-2">
-      <li className="category-item">
-        <span>Tümü</span>
-      </li>
+    <ul className="flex gap-4 text-lg md:flex-col py-2">
+      
+      {categories.map((category) => (
+        <li
+          key={category._id}
+          className="category-item hover:opacity-70"
+        >
+          {category.title}
+        </li>
+      ))}
 
-      <li className="category-item">
-        <span>Yiyecek</span>
-      </li>
-
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
       <li
         onClick={()=>{setIsisAddModalOpen(true)}}
         className="category-item !bg-purple-500 hover:opacity-70"
