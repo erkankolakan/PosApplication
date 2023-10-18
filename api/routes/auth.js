@@ -16,7 +16,7 @@ router.post("/register", async(req, res) => {
 
         res.status(200).json("A new user created successfully")
     } catch (error) {
-        console.log(error);
+        res.status(200).json(error)
     }
 })
 
@@ -29,15 +29,12 @@ router.post("/login", async(req, res) => {
         const validatePassword = await bcrypt.compare(
             req.body.password, user.password
         );
-
         if (!validatePassword) {
             return res.status(403).json("Invalid Password")
         }
         res.send(200).json(user)
-
-
     } catch (error) {
-        console.log(error);
+        res.status(200).json(error)
     }
 })
 
