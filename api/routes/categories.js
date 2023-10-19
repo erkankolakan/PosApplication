@@ -28,9 +28,11 @@ router.post("/add-category" , async (req, res) => {
 
 router.put("/update-category", async (req , res) => {
     try {
-        await Category.findOneAndUpdate({ _id: req.body._id} , req.body )
+        const updateCate = await Category.findOneAndUpdate({ _id: req.body.categoryId} , req.body )
+        if (!updateCate) {
+            res.status(400).json("Item updated not successfully");
+        }
         res.status(200).json("Item updated successfully");
-
     } catch (error) {
         // res.status(500).json({ error: "Error updating category" });
         res.status(500).json(error)
