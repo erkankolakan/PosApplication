@@ -13,7 +13,7 @@ const Categories = ({ categories, setCategories }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   return (
-    <ul className="flex gap-4 text-lg md:flex-col py-2">
+    <ul className="flex gap-4 text-lg md:flex-col py-2 h-full">
       {categories.map((category) => (
         <li key={category._id} className="category-item hover:opacity-70">
           {category.title}
@@ -51,6 +51,8 @@ const Categories = ({ categories, setCategories }) => {
       <Edit
          isEditModalOpen={isEditModalOpen}
          setIsEditModalOpen={setIsEditModalOpen}
+         setCategories={setCategories}
+         categories={categories}
       />
 
     </ul>
