@@ -4,11 +4,9 @@ import { useState } from "react";
 
 const Edit = ({isEditModalOpen, setIsEditModalOpen, setCategories, categories}) => {
   const [editingRow, setEditingRow] = useState({});
-
+ 
   const onFinish = (values) =>{
     try {
-      console.log("values", values);
-      console.log("editingRow", editingRow);
       fetch("http://localhost:5000/api/categories/update-category",
       {
         method: "PUT",
@@ -30,9 +28,37 @@ const Edit = ({isEditModalOpen, setIsEditModalOpen, setCategories, categories}) 
       )
         )
     } catch (error) {
-      message.warning("Birşyeler yanlış gitti")
+      message.error("Birşyeler yanlış gitti")
       console.log(error);
     }
+  }
+
+  const deleteCategory = (record) => {
+    if (window.confirm("Kategoriyi silmek istediğine emin misin?")) {
+      try {
+        fetch("http://localhost:5000/api/categories/delete-category",
+        {
+          method: "DELETE",
+          body: JSON.stringify({categoryId: record._id}), //-> api bizden categoryId değeri bekliyor ona tıkladığımız değerin id sini gönderiyoruz.
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        })
+        message.success("Katagori başarıyla silindi")
+        setCategories(
+          categories.filter((item) => {
+            if (item._id === record._id) {
+              return false;
+            } else {
+              return true;
+            }
+          }
+        )
+  )
+      } catch (error) {
+        message.error("Birşyeler yanlış gitti")
+        console.log(error);
+      }
+    }
+
   }
 
   const columns = [
@@ -65,7 +91,7 @@ const Edit = ({isEditModalOpen, setIsEditModalOpen, setCategories, categories}) 
             <Button type="link" onClick={() => setEditingRow(record)} className="pl-0">
               Düzenle
             </Button>
-            <Button type="link" danger >Sil</Button>
+            <Button onClick={() => deleteCategory(record)} type="link" danger  >Sil</Button>
             <Button htmlType="submit" type="link" className="text-green-700" >
               Kaydet
             </Button>
