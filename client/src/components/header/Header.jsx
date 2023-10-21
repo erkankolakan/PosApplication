@@ -10,7 +10,10 @@ const Header = () => {
 <div className='border-b mb-6'>
         <header className='py-4 px-6 flex justify-between items-center gap-10'>
             <div className="logo">
-                <Link to="/"><h2 className='text-2xl font-semibold md:text-4xl'>LOGO</h2></Link>
+                <Link to="/">
+                    {/* <h2 className='text-2xl font-semibold md:text-4xl'>LOGO</h2> */}
+                    <img className='object-cover md:w-full md:h-16  h-12 ' src="images/logo.png" alt="" />
+                </Link>
 {/* tailwindcss de md: yazarkan 768px ve üstünde olacakları söylemiş oluyoruz. */}
             </div>
 
