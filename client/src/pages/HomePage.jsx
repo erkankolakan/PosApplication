@@ -36,7 +36,7 @@ response.json() kullanırsanız: Bu, sunucudan gelen yanıtın içeriğini JSON 
         </div>
 
         <div className="products flex-[8] h-[100vh] overflow-y-auto pb-0 md:pb-32">
-          <Products />
+          <Products categories={categories} />
         </div>
 
         <div className="cart-wraper min-w-[300px] md:-mr-[24px] md:-mt-[24px] border-l">

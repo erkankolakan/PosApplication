@@ -1,8 +1,15 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ProductItem from "./ProductItem";
+import {PlusOutlined,EditOutlined } from '@ant-design/icons';
+import Add from "./Add";
 
-const Products = () => {
+const Products = ({categories}) => {
+
   const [products, setProducts] = useState([]);
+  
+  //modal
+  const [isAddModalOpen, setIsisAddModalOpen] = useState(false);
+  // const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
 
   useEffect(() =>{
@@ -19,26 +26,40 @@ const Products = () => {
 
   return (
     <div className="products-wrapper gap-4 grid grid-cols-card">
-        {
-            products.map((item) => {
-                <div className="products-item border hover:shadow-lg cursor-pointer transition-all select-none">
-                <div className="product-img">
-                  <img
-                    className="h-28 w-full border-b object-cover"
-                    src={item.img}
-                    alt=""
-                  />
-                  <div className="product-info flex flex-col border p-4">
-                    <span className="font-semibold">{item.title}</span>
-                    <span>{item.price}₺</span>
-                  </div>
-                </div>
-              </div>;
-            })
-        }
+      {
+        products.map((item) => (
+          <ProductItem item={item} key={item._id} />
+        ))
+      }
+
+      <div onClick={()=> {setIsisAddModalOpen(true)}} className="products-item border bg-purple-500 hover:shadow-lg cursor-pointer transition-all select-none flex items-center justify-center md:text-4xl text-2xl text-white hover:opacity-80 min-h-[188px]">
+        <PlusOutlined />
+      </div>
+
+
+      <div className="products-item border bg-amber-500 hover:shadow-lg cursor-pointer transition-all select-none flex items-center justify-center md:text-4xl text-2xl text-white hover:opacity-80 min-h-[188px]">
+        <EditOutlined />
+      </div>
+
+
+      <Add
+        isAddModalOpen={isAddModalOpen}
+        setIsisAddModalOpen={setIsisAddModalOpen}
+        categories={categories}
+        setProducts={setProducts}
+        products={products}
+      />
+
+
+
+
 
     </div>
   );
 };
 
 export default Products;
+
+
+
+
