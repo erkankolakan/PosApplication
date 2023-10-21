@@ -11,7 +11,7 @@ const ProductPage = () => {
                 Ürünler
             </h1>
             <div>
-                <Edit/>
+                <Edit />
             </div>
 
         </div>
