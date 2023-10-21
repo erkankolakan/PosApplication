@@ -2,13 +2,14 @@ import { Form, Modal, Table, Input, Button, message, Select } from "antd";
 import { useEffect, useState } from "react";
 
 const Edit = () => {
-  const [form] = Form.useForm();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState();
-  form.setFieldsValue(editingItem);
 
+  //-->> !! bu özellik oldukça güzeldir dorm değerini alıyorum formun olduğu yere koyuyoruz artık nereye koyduksak setFieldsValue sayesinde editingItem içinde gelen tüm değerleri alıyoruz ve form içindeki ilgili yerlere koyuyoruz!!!
+  const [form] = Form.useForm();
+  form.setFieldsValue(editingItem);
 
   useEffect(() => {
     (async () => {
@@ -175,7 +176,7 @@ const Edit = () => {
           layout="vertical"
           onFinish={onFinish}
           form={form}
-          initialValues={editingItem}
+          // initialValues={editingItem} --> normalde ant desing ile kolayce verileri defaultValue olarak tüm değeri girebiliriz
         >
           <Form.Item
             name="title"
