@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
 import {PlusOutlined,EditOutlined } from '@ant-design/icons';
 import Add from "./Add";
+import { useNavigate } from "react-router-dom";
 
 const Products = ({categories}) => {
-
+  
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate()
   
   //modal
   const [isAddModalOpen, setIsisAddModalOpen] = useState(false);
   // const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
 
 
   useEffect(() =>{
@@ -37,10 +40,10 @@ const Products = ({categories}) => {
       </div>
 
 
-      <div className="products-item border bg-amber-500 hover:shadow-lg cursor-pointer transition-all select-none flex items-center justify-center md:text-4xl text-2xl text-white hover:opacity-80 min-h-[188px]">
+{/* burada navigate işlemini Link ile değilde useNavigate ile kullandım */}
+      <div onClick={()=> {navigate("/products")}} className="products-item border bg-amber-500 hover:shadow-lg cursor-pointer transition-all select-none flex items-center justify-center md:text-4xl text-2xl text-white hover:opacity-80 min-h-[188px]">
         <EditOutlined />
       </div>
-
 
       <Add
         isAddModalOpen={isAddModalOpen}
