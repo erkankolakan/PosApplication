@@ -1,4 +1,5 @@
-import { Button, Form, Input, Modal, Select, message } from "antd";
+import { Button, Form, Input, Modal, Select, Spin, message } from "antd";
+import { useState } from "react";
 
 const Add = ({
   isAddModalOpen,
@@ -8,8 +9,11 @@ const Add = ({
   setProducts,
 }) => {
 
+  const [loading, setLoading] = useState(false); // Yükleme durumu için bir state tanımla
+
   const onFinish = async (values) => {
     try {
+      setLoading(true); // Yükleme işlemi başladığında loading state'ini true yap
       const response = await fetch(
         "http://localhost:5000/api/products/add-product",
         {
@@ -33,6 +37,9 @@ const Add = ({
     } catch (error) {
       console.log(error);
     }
+    finally {
+      setLoading(false); // İşlem tamamlandığında loading state'ini false yap
+    }
   };
 
   const [form] = Form.useForm();
@@ -41,12 +48,16 @@ const Add = ({
     <>
       <Modal
         title="Yeni Ürün Ekle"
+        className="h-full"
         open={isAddModalOpen}
         onCancel={() => {
           setIsisAddModalOpen(false);
         }}
         footer={false}
       >
+        {loading ? ( // Yükleme işlemi sırasında Spin bileşenini göster
+          <Spin size="large" />
+        ) : (
         <Form layout="vertical" onFinish={onFinish} form={form}>
           <Form.Item
             name="title"
@@ -112,6 +123,8 @@ const Add = ({
             </Button>
           </Form.Item>
         </Form>
+
+      )}
       </Modal>
     </>
   );
