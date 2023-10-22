@@ -1,0 +1,7 @@
+* ant.desing hatası
+biz ant.desing kullanırken bazı paketleri yüklmekde sıkıntı yaşabiliriz bu da ant.desing ing paket sürümü ile alakalı. Bu yüzden paket yüklerken sıkıntı yaşarsak ilk önde yeni sürü silip paket hangi ant.desing sürümünü istiyorsa onu yüklüyoruz daha sonra istediğimiz paketi yüklüyoruz yükledikten sonra ant.desing in yeni paketini tekrardan yükleyebiliriz.> (Ant desingin içindeki hangi paket hata veriyorsa onu silip daha sonra yeniden yüklüyoruz)
+eğer yapamazsan udmy de poss uygulması videosunda redux kurarken yapılıyor ordan bakarak yap.
+
+* Redux toolkit mantığı oldukça basit. Toolkiti kuruyoruz daha sonra react için özel olan react redux toolkiti kuruyoruz. Daha sonra tüm uygulamayı kapsayan index.js içinde toolkitden gelen prvider ile uygulmayı kalıoruz ve içerisine store yi ekliyorum. Store içerisine eklemiş değişkenler için oluşturmuğumuz slice(parça dosyaları) geliyoruz store içinde çağırarak global e yayıyoruz.
+
+*
