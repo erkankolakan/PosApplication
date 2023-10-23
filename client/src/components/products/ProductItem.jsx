@@ -1,6 +1,17 @@
+import { addToCart } from "../../redux/cartSlice";
+import { useDispatch } from "react-redux";
+//bir slicenin içindeki fonksiyonu kullanmak için useDispatch, initialState içindeki değişkenlere erişmek için de useSelector gerekli.
+
 const ProductItem = ({ item }) => {
+  const dispatch = useDispatch()
+
+  const handleClick = () => {
+    dispatch(addToCart(item))
+  }
+
+
   return (
-      <div className="products-item border hover:shadow-lg cursor-pointer transition-all select-none">
+      <div onClick={handleClick} className="products-item border hover:shadow-lg cursor-pointer transition-all select-none">
         <div className="product-img">
           <img
             className="h-28 w-full border-b object-cover"

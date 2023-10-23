@@ -4,4 +4,20 @@ eğer yapamazsan udmy de poss uygulması videosunda redux kurarken yapılıyor o
 
 * Redux toolkit mantığı oldukça basit. Toolkiti kuruyoruz daha sonra react için özel olan react redux toolkiti kuruyoruz. Daha sonra tüm uygulamayı kapsayan index.js içinde toolkitden gelen prvider ile uygulmayı kalıoruz ve içerisine store yi ekliyorum. Store içerisine eklemiş değişkenler için oluşturmuğumuz slice(parça dosyaları) geliyoruz store içinde çağırarak global e yayıyoruz.
 
-*
+
+* Gloabal alandaki redux değişkene aşağıdaki gibi erişiyoruz.
+
+    import {useSelector } from "react-redux";
+    const cart = useSelector((state) => state.cart)
+
+
+* Gloabal alandaki redux fonksiyonuna aşağıdaki gibi erişiyoruz.
+
+import { useDispatch } from "react-redux";
+
+    const dispatch = useDispatch()
+    dispatch(addToCart("x"))        --> addToCart bir fonksiyon ve bir paremetre bekliyor örnek olsun diye x gönderdik.
+
+!! ama unutmamak gerekir
+export const {addToCart} = cartSlice.actions //-> fonksiyonları özellikle dışarı açmak gerekir, reducersler içindeki fonksiyonlar actions diye geçer.
+export default cartSlice.reducer //-> reducerları dışarı açmak gerekir.

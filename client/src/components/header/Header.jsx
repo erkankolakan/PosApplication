@@ -4,8 +4,12 @@ import { SearchOutlined,HomeOutlined,ShoppingCartOutlined,CopyOutlined,UserOutli
 import {Link} from "react-router-dom"
 
 import { Badge, Input } from 'antd';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+    const cart = useSelector((state) => state.cart) //-> productItem içisinde redux da buluna fonksiyon sayesinde cartItem array değişkeni içerisine tıkladığımız ürünleri ekledik, redux da global alanda olduğu için biz direk gelip burda cartItem değişkenimize erişebiliyoruz.
+    const cartLength = cart.cartItem.length // sepetde kaç ürün var onu öğreniyoruz.
+
   return (
 <div className='border-b mb-6'>
         <header className='py-4 px-6 flex justify-between items-center gap-10'>
@@ -26,7 +30,7 @@ const Header = () => {
                     <HomeOutlined className='md:text-2xl text-xl'/>
                     <span className='md:text-xs  text-[10px]'>Anasayfa</span>
                 </Link>
-                <Badge count={5} offset={[0,1]} className='md:flex hidden'>
+                <Badge count={cartLength} offset={[0,1]} className='md:flex hidden'>
                     <Link to={"/cart"} className='menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center'>
                             <ShoppingCartOutlined className='md:text-2xl text-xl'/> 
                             <span className='md:text-xs  text-[10px]'>Sepet</span>
