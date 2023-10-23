@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 
 import {useSelector, useDispatch} from "react-redux"
-import { deleteCart } from "../../redux/cartSlice";
+import { deleteCart,increase,decrase } from "../../redux/cartSlice";
 
 const CartTotals = () => {
 
@@ -22,7 +22,7 @@ const CartTotals = () => {
       </h2>
       <ul className=" cart-items p-2 flex flex-col gap-y-3 overflow-y-auto">
         {
-          cart.cartItem.map((item) => (
+          cart.cartItem.length > 0 ? cart.cartItem.map((item) => (
             <li key={item._id} className="cart-item flex items-center justify-between">
             {/* Sol taraftaki içerik */}
             <img
@@ -38,21 +38,23 @@ const CartTotals = () => {
             <div className="flex items-baseline justify-around w-full">
               {/* Sağ taraftaki düğmeler */}
               <Button
+                onClick={()=> dispatch(increase(item))}
                 type="primary"
                 className="w-full !rounded-full items-center justify-center flex"
                 size="small"
                 icon={<PlusCircleOutlined />}
               />
-              <span className="font-semibold">{item.quantity}</span>
+              <span className="font-semibold inline-block w-6 text-center">{item.quantity}</span>
               <Button
+                onClick={()=> dispatch(decrase(item))}
                 type="primary"
                 className="w-full !rounded-full items-center justify-center flex"
                 size="small"
                 icon={<MinusCircleOutlined />}
               />
             </div>
-          </li>
-          ))
+          </li> 
+          )) : <div className="text-md font-semibold text-center"> Sepenizde hiç ürün yok</div> 
         }
       </ul>
 
@@ -78,7 +80,7 @@ const CartTotals = () => {
       </div>
 
       <div className="py-4 px-2 ">
-        <Button type="primary" className="w-full" size="large">
+        <Button  type="primary" className="w-full" size="large">
           Sipariş Oluştur
         </Button>
         <Button

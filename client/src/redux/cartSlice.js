@@ -21,11 +21,25 @@ const cartSlice = createSlice({
         deleteCart:(state, action) =>{
             state.cartItem = state.cartItem.filter((item) => item._id !== action.payload._id)
             state.total -= action.payload.price * action.payload.quantity
-        }
-    }
+        },
+        increase:(state, action) => {
+            const findCartItem = state.cartItem.find((item) => item._id === action.payload._id )
+            findCartItem.quantity += 1
+            state.total += action.payload.price
+        },
+        decrase:(state, action) => {
+            const findCartItem = state.cartItem.find((item) => item._id === action.payload._id )
+            findCartItem.quantity -= 1
+            state.total -= action.payload.price
+
+            if(findCartItem.quantity === 0){
+                state.cartItem = state.cartItem.filter((item) => item._id !== action.payload._id)
+            }
+        },
+    }   
 })
 
-export const {addToCart, deleteCart} = cartSlice.actions //-> fonksiyonları özellikle dışarı açmak gerekir, reducersler içindeki fonksiyonlar actions diye geçer.
+export const {addToCart, deleteCart,increase,decrase} = cartSlice.actions //-> fonksiyonları özellikle dışarı açmak gerekir, reducersler içindeki fonksiyonlar actions diye geçer.
 export default cartSlice.reducer //-> reducerları dışarı açmak gerekir.
 
 
