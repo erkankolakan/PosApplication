@@ -9,7 +9,12 @@ const cartSlice = createSlice({
     reducers:{
         // reducers içerisinde method ve fonksiyonlar tutulur Fonksiyonlar state ve action parametreleri alır. Bu metotla beraber gönderdiğimiz verilerdir. Statler de bir üstde yazan initialState içindeki değişkenlerdir.
         addToCart:(state,action)=>{
-            state.cartItem.push(action.payload)
+            const findCartItem = state.cartItem.find((item) => item._id === action.payload._id )
+            if(findCartItem){
+                findCartItem.quantity += 1
+            }else{
+                state.cartItem.push(action.payload)
+            }
         }
     }
 })

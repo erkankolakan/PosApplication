@@ -6,7 +6,7 @@ const ProductItem = ({ item }) => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(addToCart(item))
+    dispatch(addToCart({...item , quantity:1})) //-> temleri gönderirken her birinin içerisine quantit(miktar) değerin i 1 olarak gönder diyoruz.
   }
 
 
