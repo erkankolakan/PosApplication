@@ -15,11 +15,14 @@ const cartSlice = createSlice({
             }else{
                 state.cartItem.push(action.payload)
             }
+        },
+        deleteCart:(state, action) =>{
+            state.cartItem = state.cartItem.filter((item) => item._id !== action.payload._id)
         }
     }
 })
 
-export const {addToCart} = cartSlice.actions //-> fonksiyonları özellikle dışarı açmak gerekir, reducersler içindeki fonksiyonlar actions diye geçer.
+export const {addToCart, deleteCart} = cartSlice.actions //-> fonksiyonları özellikle dışarı açmak gerekir, reducersler içindeki fonksiyonlar actions diye geçer.
 export default cartSlice.reducer //-> reducerları dışarı açmak gerekir.
 
 
