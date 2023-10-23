@@ -4,7 +4,8 @@ const cartSlice = createSlice({
     name: 'cart',    //-> gobal de tutacağım değerler
     initialState:{
         cartItem:[], //-> cartItem içerisine kartlarımı göndererek her yerden erişebilirim
-        cartTotal:0, //-> mesela total 0 değerine heryerden ulaşabilirim
+        total:0, //-> mesela total 0 değerine heryerden ulaşabilirim
+        tax:8     
     },
     reducers:{
         // reducers içerisinde method ve fonksiyonlar tutulur Fonksiyonlar state ve action parametreleri alır. Bu metotla beraber gönderdiğimiz verilerdir. Statler de bir üstde yazan initialState içindeki değişkenlerdir.
@@ -15,9 +16,11 @@ const cartSlice = createSlice({
             }else{
                 state.cartItem.push(action.payload)
             }
+            state.total += action.payload.price
         },
         deleteCart:(state, action) =>{
             state.cartItem = state.cartItem.filter((item) => item._id !== action.payload._id)
+            state.total -= action.payload.price * action.payload.quantity
         }
     }
 })

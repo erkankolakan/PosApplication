@@ -13,7 +13,7 @@ const CartTotals = () => {
     const dispatch = useDispatch()
   
 
-  const {cartItem} = useSelector((state) => state.cart) //-> bu şekilde kullanım daha profosyonel
+  const cart = useSelector((state) => state.cart)
 
   return (
     <div className="cart h-screen max-h-[calc(100vh_-_90px)] flex flex-col ">
@@ -22,7 +22,7 @@ const CartTotals = () => {
       </h2>
       <ul className=" cart-items p-2 flex flex-col gap-y-3 overflow-y-auto">
         {
-          cartItem.map((item) => (
+          cart.cartItem.map((item) => (
             <li key={item._id} className="cart-item flex items-center justify-between">
             {/* Sol taraftaki içerik */}
             <img
@@ -54,19 +54,18 @@ const CartTotals = () => {
           </li>
           ))
         }
-
       </ul>
 
       <div className="cart-totals mt-auto ">
         <div className="border-b border-t">
           <div className="flex justify-between p-4 ">
             <b>Ara Toplam</b>
-            <span>99₺</span>
+            <span>{ (cart.total).toFixed(2)  }₺</span>
           </div>
 
           <div className="flex justify-between p-4 ">
-            <b>KDV</b>
-            <span className="text-red-700">+7.92₺</span>
+            <b>KDV%8</b>
+            <span className="text-red-700">{(cart.tax * cart.total) / 100 > 0 ? `+ ${((cart.tax * cart.total) / 100).toFixed(2)}` : 0  } ₺</span>
           </div>
         </div>
       </div>
@@ -74,7 +73,7 @@ const CartTotals = () => {
       <div className="border-b mt-4">
         <div className="flex justify-between p-4 ">
           <b className="text-xl text-green-600">Genel Toplam</b>
-          <span className="text-xl">106.92₺</span>
+          <span className="text-xl">{ (cart.total + (cart.tax * cart.total) / 100).toFixed(2) } ₺</span>
         </div>
       </div>
 
