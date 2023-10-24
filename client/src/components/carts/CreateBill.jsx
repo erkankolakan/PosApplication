@@ -1,9 +1,37 @@
-import { Button, Card, Form, Input, Modal, Select } from "antd";
+import { Button, Card, Form, Input, Modal, Select, Spin, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { removeAll } from "../../redux/cartSlice";
+
 
 const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
 
-    const onFinish = (values) => {
-        console.log("Received values of from:", values);
+    const cart = useSelector((state) => state.cart);
+    const dispatch = useDispatch()
+    
+    const navigate = useNavigate()
+    const onFinish =async (values) => {
+      try {
+        const res = await fetch("http://localhost:5000/api/bill/add-bill", {
+          method: "POST",
+          headers:{"Content-type":"application/json; charset = UTF-8"},
+          body: JSON.stringify({
+            ...values,
+            subTotal: cart.total,
+            tax: ((cart.total +  cart.tax) / 100).toFixed(2),
+            totalAmount: (cart.total + (cart.total * cart.tax) / 100).toFixed(2),
+            cartItems:cart.cartItem
+          })},
+        )
+        if (res.status) { //-> eğer işlem başarılı bir şekilde gerçekleştiyse bu mesaj gider.
+          message.success("Fatura oluşturuldu");
+          dispatch(removeAll())
+          navigate("/bills")
+        }
+      } catch (error) { 
+        message.error("Fatura oluştururken bir hata oluştu") 
+        console.log(error);
+      }
     }
 
   return (
@@ -19,7 +47,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
       >
         <Form layout="vertical" onFinish={onFinish}>
           <Form.Item
-            label="Müşteri adı"
+            label="Müşteri Adı"
             name={"customerName"}
             rules={[{ required: true, message: "müşteri adı boş bırakılamaz" }]}
           >
@@ -28,7 +56,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
 
           <Form.Item
             label="Telefon Numarası"
-            name={"phoneNumber"}
+            name={"costomerPhoneNumber"}
             rules={[{ required: true, message: "Telefon numarası zorunlu" }]}>
             <Input
               title="Bir telefon numarası yazın"
@@ -38,7 +66,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
           </Form.Item>
 
           <Form.Item
-            label="Müşteri adı"
+            label="Ödeme Yöntemi"
             name={"paymentMode"}
             rules={[{ required: true, message: "ödeme yöntemi zorunlu" }]}>
             <Select placeholder="Bir ödeme yöntemi seçiniz">
@@ -48,17 +76,25 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
           </Form.Item>
 
           <Card className=" ">
-            <div className="flex justify-between">
+          <div className="flex justify-between">
               <span>Ara Toplam</span>
-              <span>549.00₺</span>
+              <span>
+                {cart.total.toFixed(2) > 0 ? cart.total.toFixed(2) : 0}₺
+              </span>
             </div>
             <div className="flex justify-between my-2">
-              <span>KDC Toplam %8</span>
-              <span className="text-red-600">+43.00₺</span>
+              <span>KDV %{cart.tax}</span>
+              <span className="text-red-600">
+                {" "}
+                {(cart.tax * cart.total) / 100 > 0
+                  ? `+ ${((cart.tax * cart.total) / 100).toFixed(2)}`
+                  : 0}{" "}
+                ₺
+              </span>
             </div>
             <div className="flex justify-between font-semibold">
               <span>Toplam</span>
-              <span>592.00₺</span>
+              <span>{ (cart.total + (cart.tax * cart.total) / 100).toFixed(2)}₺</span>
             </div>
 
             <div className="flex justify-end">

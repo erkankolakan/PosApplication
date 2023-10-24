@@ -87,7 +87,7 @@ const CartPage = () => {
       render: (_, record) => {
         //bu text pricenin değerini alıyor
         return (
-          <Popconfirm  //-> popconfirm oldukça iyi bir özellik
+          <Popconfirm //-> popconfirm oldukça iyi bir özellik
             title="Ürünü silmek istediğinize eminmisiniz ?"
             onConfirm={() => dispatch(deleteCart(record))}
             okText="Evet"
@@ -117,21 +117,33 @@ const CartPage = () => {
           columns={columns}
           bordered
           pagination={false}
+          scroll={{
+            x:1200,
+            y:300,
+          }}
         />
 
         <div className="cart-total flex justify-end mt-4">
           <Card className="w-72 ">
             <div className="flex justify-between">
               <span>Ara Toplam</span>
-              <span>549.00₺</span>
+              <span>
+                {cart.total.toFixed(2) > 0 ? cart.total.toFixed(2) : 0}₺
+              </span>
             </div>
             <div className="flex justify-between my-2">
-              <span>KDC Toplam %8</span>
-              <span className="text-red-600">+43.00₺</span>
+              <span>KDV %{cart.tax}</span>
+              <span className="text-red-600">
+                {" "}
+                {(cart.tax * cart.total) / 100 > 0
+                  ? `+ ${((cart.tax * cart.total) / 100).toFixed(2)}`
+                  : 0}{" "}
+                ₺
+              </span>
             </div>
             <div className="flex justify-between font-semibold">
               <span>Toplam</span>
-              <span>592.00₺</span>
+              <span>{ (cart.total + (cart.tax * cart.total) / 100).toFixed(2)}₺</span>
             </div>
 
             <Button
@@ -139,6 +151,7 @@ const CartPage = () => {
               className="mt-4 w-full"
               type="primary"
               size="large"
+              disabled={cart.cartItem.length === 0}
             >
               Sipariş Oluştur
             </Button>

@@ -1,4 +1,5 @@
 import { Button, message } from "antd";
+import { useNavigate } from "react-router-dom";
 import {
   ClearOutlined,
   PlusCircleOutlined,
@@ -13,8 +14,10 @@ import {
   removeAll,
 } from "../../redux/cartSlice";
 
+
 const CartTotals = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const cart = useSelector((state) => state.cart);
 
@@ -84,7 +87,7 @@ const CartTotals = () => {
           </div>
 
           <div className="flex justify-between p-4 ">
-            <b>KDV%8</b>
+            <b>KDV% {cart.tax}</b>
             <span className="text-red-700">
               {(cart.tax * cart.total) / 100 > 0
                 ? `+ ${((cart.tax * cart.total) / 100).toFixed(2)}`
@@ -106,6 +109,7 @@ const CartTotals = () => {
 
       <div className="py-4 px-2 ">
         <Button
+          onClick={()=> navigate("/cart")}
           disabled={cart.cartItem.length === 0}
           type="primary"
           className="w-full"

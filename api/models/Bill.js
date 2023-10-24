@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const BillSchema = new mongoose.Schema({
-    costomerName: {
+    customerName: {
         type: String,
         require:true
     },
