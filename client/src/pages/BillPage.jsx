@@ -1,47 +1,81 @@
 import Header from "../components/header/Header";
 import { Button, Card, Table } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PrintBill from "../components/bills/PrintBill";
+import { useSelector } from "react-redux";
+
+
+
+
 
 const BillPage = () => {
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
+
+  const cart = useSelector((state)=>state.cart)
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Müşteri Adı",
+      dataIndex: "customerName",
+      key: "customerName",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Telefon Numarası",
+      dataIndex: "costomerPhoneNumber",
+      key: "costomerPhoneNumber",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Oluşturma Tarihi",
+      dataIndex: "createdAt",
+      render:(text) => {
+        return <span>{new Date(text).toLocaleDateString()}</span>
+      },
+      key: "createdAt",
     },
+    {
+      title: "Ödeme Yönemi",
+      dataIndex: "paymentMode",
+      key: "paymentMode",
+    },
+    {
+      title: "Toplam Fiyat",
+      dataIndex: "totalAmount",
+      key: "totalAmount",
+      render : (text) => {
+        return <span>{text}₺</span>
+      }
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      render : (text) => {
+        return <Button type="link" onClick={showModal} className="pl-0">Yazdır</Button>
+      }
+    }
+
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const showModal = () => {
     setIsModalOpen(true);
   }; 
+
+  const [billItems , setBillItems] = useState()
+  useEffect(()=> {
+
+    (async()=> {
+      try {
+        const res = await fetch("http://localhost:5000/api/bill/get-all")
+        const data = await res.json();
+        setBillItems(data)
+        console.log('====================================');
+        console.log(data);
+        console.log('====================================');
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  },[] )
 
   return (
     <>
@@ -49,13 +83,8 @@ const BillPage = () => {
       <div className="px-6">
         <h1 className="text-4xl text-center font-semibold  mb-4">Faturalar</h1>
 
-        <Table dataSource={dataSource} columns={columns} bordered pagination={false} />
-        <div className="cart-total flex justify-end mt-4">
-          <Card className="w-72 ">
-            <Button onClick={showModal} className="mt-4 w-full" type="primary" size="large">Yazdır</Button>
-          </Card>
-        </div>
-      </div>
+        <Table dataSource={billItems} columns={columns} bordered pagination={false} />
+    </div>
 
       <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  />
     </>

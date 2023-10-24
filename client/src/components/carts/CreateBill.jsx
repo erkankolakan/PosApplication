@@ -1,5 +1,5 @@
 import { Button, Card, Form, Input, Modal, Select, Spin, message } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeAll } from "../../redux/cartSlice";
 
@@ -26,7 +26,8 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
         if (res.status) { //-> eğer işlem başarılı bir şekilde gerçekleştiyse bu mesaj gider.
           message.success("Fatura oluşturuldu");
           dispatch(removeAll())
-          navigate("/bills")
+          setIsModalOpen(false)
+          navigate("/dashboardbills")
         }
       } catch (error) { 
         message.error("Fatura oluştururken bir hata oluştu") 

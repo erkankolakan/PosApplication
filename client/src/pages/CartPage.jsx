@@ -77,6 +77,7 @@ const CartPage = () => {
     {
       //-> bu kolon diğerlerinden farklı olarak çalışıyor
       title: "Toplam fiyat",
+      key: "totalPrice",
       render: (text, record) => {
         //bu text pricenin değerini alıyor
         return <span>{(record.quantity * record.price).toFixed(2)}₺</span>;
@@ -84,6 +85,7 @@ const CartPage = () => {
     },
     {
       title: "Actions",
+      key: "actions",
       render: (_, record) => {
         //bu text pricenin değerini alıyor
         return (
