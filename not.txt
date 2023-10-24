@@ -21,3 +21,16 @@ import { useDispatch } from "react-redux";
 !! ama unutmamak gerekir
 export const {addToCart} = cartSlice.actions //-> fonksiyonları özellikle dışarı açmak gerekir, reducersler içindeki fonksiyonlar actions diye geçer.
 export default cartSlice.reducer //-> reducerları dışarı açmak gerekir.
+
+
+** popconfir oldukça iyi bir özellik
+    <Popconfirm  //-> popconfirm oldukça iyi bir özellik
+        title="Ürünü silmek istediğinize eminmisiniz ?"
+        onConfirm={() => dispatch(deleteCart(record))}
+        okText="Evet"
+        cancelText="Hayır"
+    >
+        <Button type="link" danger>
+          Sil
+        </Button>
+    </Popconfirm>
