@@ -36,10 +36,14 @@ const cartSlice = createSlice({
                 state.cartItem = state.cartItem.filter((item) => item._id !== action.payload._id)
             }
         },
+        removeAll:(state, action) => {
+                state.cartItem =state.cartItem.slice(state.cartItem.length) // [] de diyebilirdik
+                state.total = 0
+        },
     }   
 })
 
-export const {addToCart, deleteCart,increase,decrase} = cartSlice.actions //-> fonksiyonları özellikle dışarı açmak gerekir, reducersler içindeki fonksiyonlar actions diye geçer.
+export const {addToCart, deleteCart,increase,decrase, removeAll} = cartSlice.actions //-> fonksiyonları özellikle dışarı açmak gerekir, reducersler içindeki fonksiyonlar actions diye geçer.
 export default cartSlice.reducer //-> reducerları dışarı açmak gerekir.
 
 

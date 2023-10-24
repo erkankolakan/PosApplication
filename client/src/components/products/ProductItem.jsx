@@ -1,3 +1,4 @@
+import { message } from "antd";
 import { addToCart } from "../../redux/cartSlice";
 import { useDispatch } from "react-redux";
 //bir slicenin içindeki fonksiyonu kullanmak için useDispatch, initialState içindeki değişkenlere erişmek için de useSelector gerekli.
@@ -7,6 +8,7 @@ const ProductItem = ({ item }) => {
 
   const handleClick = () => {
     dispatch(addToCart({...item , quantity:1})) //-> temleri gönderirken her birinin içerisine quantit(miktar) değerin i 1 olarak gönder diyoruz.
+    message.success("Ürün septe eklendi")
   }
 
 
