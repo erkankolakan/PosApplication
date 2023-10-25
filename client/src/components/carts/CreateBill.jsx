@@ -19,7 +19,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
           },
           body: JSON.stringify({
             ...values,
-            subTotal: cart.total,
+            subTotal: cart.total.toFi(2),
             tax: ((cart.total +  cart.tax) / 100).toFixed(2),
             totalAmount: (cart.total + (cart.total * cart.tax) / 100).toFixed(2),
             cartItems:cart.cartItem
