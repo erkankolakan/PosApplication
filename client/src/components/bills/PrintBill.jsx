@@ -1,7 +1,8 @@
 import {  Button, Modal } from "antd";
 
-const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
+const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
 
+    console.log(customer);
   return (
     <>
 
@@ -42,11 +43,11 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
                             <div className="text-md text-slate-500">
                                 <div>
                                     <p className="font-bold text-slate-700">Fatura numarası:</p>
-                                    <p>000041</p>
+                                    <p>000{Math.floor(Math.random() * 100)}</p>
                                 </div>
                                 <div>
                                     <p className="font-bold text-slate-700 mt-2">Veriliş Tarihi:</p>
-                                    <p>02/03/2002</p>
+                                    <p>{customer?.createdAt.substring(0,10)}</p>
                                 </div>
                             </div>
 
@@ -81,39 +82,45 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="border-b border-slate-200">
+                               {
+                                customer?.cartItems.map((item)=>(
+                                    <tr className="border-b border-slate-200" key={item._id}>
                                     <td className="py-4 sm:table-cell hidden">
-                                        <img src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg" alt="" className="w-12 h-12 rounded-sm object-cover" />
+                                    <img
+                                        src={item.img}
+                                        alt=""
+                                        className="w-12 h-12 object-cover"
+                                    />
                                     </td>
 
                                     <td className="py-4 sm:table-cell hidden">
                                         <div className="flex flex-col">
-                                            <span className="font-medium ">Elma</span>
-                                            <span className="text-xs sm:hidden inline-block">Birim fiyatı 5₺</span>
+                                            <span className="font-medium ">{item.title}</span>
+                                            <span className="text-xs sm:hidden inline-block">Birim fiyatı {item.price}₺</span>
                                         </div>
                                     </td>
 
-                                    
                                     <td className="py-4 sm:hidden" colSpan={4}>
                                         <div className="flex flex-col">
                                             <span className="font-medium ">Elma</span>
-                                            <span className="text-xs sm:hidden inline-block">Birim fiyatı 5₺</span>
+                                            <span className="text-xs sm:hidden inline-block">Birim fiyatı {item.price}₺</span>
                                         </div>
                                     </td>
 
                                     <td className="py-4  text-center sm:table-cell hidden">
-                                        <span>5₺</span>
+                                        <span>{item.price}₺</span>
                                     </td>
 
                                     <td className="py-4  text-center sm:table-cell hidden">
-                                        <span>1</span>
+                                        <span>{item.quantity}</span>
                                     </td>
 
                                     <td className="py-4  text-end">
-                                        <span>5.00₺</span>
+                                        <span>{(item.quantity * item.price)}₺</span>
                                     </td>
                                 </tr>
-
+                                ))
+                               }
                                 
                             </tbody>
 
@@ -124,7 +131,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
                                     <th className="text-left pt-4 font-normal sm:hidden " colSpan={4}  scope="rows">Ara Toplam</th>
 
 
-                                    <th className="text-right pt-4 font-normal " scope="rows">61₺</th>
+                                    <th className="text-right pt-4 font-normal " scope="rows">{(customer?.subTotal.toFixed(2))}₺</th>
                                 </tr>
 
                                 <tr>
@@ -132,13 +139,13 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
 
                                     <th className="text-left pt-4 font-normal sm:hidden " colSpan={4}  scope="rows">KDV</th>
 
-                                    <th className="text-right pt-4 font-normal text-red-600" scope="rows">+4.88</th>
+                                    <th className="text-right pt-4 font-normal text-red-600" scope="rows">+{customer?.tax}</th>
                                 </tr>
 
                                 <tr>
                                     <th className="text-right pt-4 font-normal sm:table-cell hidden" colSpan={4} scope="rows">Genel Toplam</th>
                                     <th className="text-left pt-4 font-normal sm:hidden " colSpan={4}  scope="rows">Genel Toplam</th>
-                                    <th className="text-right pt-4 font-normal " scope="rows">65.88₺</th>
+                                    <th className="text-right pt-4 font-normal " scope="rows">{customer?.totalAmount}₺</th>
                                 </tr>
                             </tfoot>
                         </table>
