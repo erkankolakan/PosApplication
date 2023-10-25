@@ -6,6 +6,13 @@ const bcrypt = require('bcrypt');
 router.post("/register", async(req, res) => {
     try {
         const {username,email,password} = req.body;
+
+        // Gelen E-Postda adresi başka kullanıcı tarafından kullanılıyor mu kontrolü
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json("Bu e-posta adresi zaten kullanılıyor.");
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         await User.create({
