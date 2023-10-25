@@ -14,14 +14,18 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
       try {
         const res = await fetch("http://localhost:5000/api/bill/add-bill", {
           method: "POST",
-          headers:{"Content-type":"application/json; charset = UTF-8"},
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
             ...values,
             subTotal: cart.total,
             tax: ((cart.total +  cart.tax) / 100).toFixed(2),
             totalAmount: (cart.total + (cart.total * cart.tax) / 100).toFixed(2),
             cartItems:cart.cartItem
-          })},
+          })
+        
+        },
         )
         if (res.status) { //-> eğer işlem başarılı bir şekilde gerçekleştiyse bu mesaj gider.
           message.success("Fatura oluşturuldu");
