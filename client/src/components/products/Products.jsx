@@ -17,8 +17,8 @@ const Products = ({categories}) => {
   useEffect(() =>{
     (async() => {
         try {
-            const productsAll = await fetch("http://localhost:5000/api/products/get-all")
-            const  data = await productsAll.json();
+            const res = await fetch("http://localhost:5000/api/products/get-all");
+            const data = await res.json();
             setProducts(data);
         } catch (error) {
             console.log(error);

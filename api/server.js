@@ -2,6 +2,8 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const dotenv = require("dotenv")
+const logger = require("morgan");
+
 const app = express()
 
 
@@ -26,8 +28,10 @@ const connect = async() => {
 }
 
 //middlewares
+app.use(logger("dev"));
 app.use(cors()) //-> cors farklı urlerden senin API ne istek atılmasını sağlar istersen bir URL yazarak sadece o URL nin senin apine erişmesine izin verebilirsin.
 app.use(express.json());
+
 
 app.use("/api/categories" , categoryRoute)
 app.use("/api/products" , productsRoute)
