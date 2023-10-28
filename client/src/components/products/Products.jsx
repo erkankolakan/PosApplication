@@ -4,8 +4,7 @@ import {PlusOutlined,EditOutlined } from '@ant-design/icons';
 import Add from "./Add";
 import { useNavigate } from "react-router-dom";
 
-const Products = ({categories}) => {
-  const [products, setProducts] = useState([]);
+const Products = ({categories, filtered, products, setProducts }) => {
   const navigate = useNavigate()
   
   //modal
@@ -14,22 +13,12 @@ const Products = ({categories}) => {
 
 
 
-  useEffect(() =>{
-    (async() => {
-        try {
-            const res = await fetch("http://localhost:5000/api/products/get-all");
-            const data = await res.json();
-            setProducts(data);
-        } catch (error) {
-            console.log(error);
-        }
-    })();
-  },[])
+
 
   return (
     <div className="products-wrapper gap-4 grid grid-cols-card">
       {
-        products.map((item) => (
+        filtered.map((item) => (
           <ProductItem item={item} key={item._id} />
         ))
       }
