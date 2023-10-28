@@ -14,7 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Badge, Input, message } from "antd";
 import { useSelector } from "react-redux";
 
-const Header = () => {
+const Header = ({setSearch}) => {
   const cart = useSelector((state) => state.cart); //-> productItem içisinde redux da buluna fonksiyon sayesinde cartItem array değişkeni içerisine tıkladığımız ürünleri ekledik, redux da global alanda olduğu için biz direk gelip burda cartItem değişkenimize erişebiliyoruz.
   const cartLength = cart.cartItem.length; // sepetde kaç ürün var onu öğreniyoruz.
 
@@ -48,6 +48,7 @@ const Header = () => {
             size="large"
             placeholder=" ürün ara..."
             prefix={<SearchOutlined />}
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
           />
         </div>
 

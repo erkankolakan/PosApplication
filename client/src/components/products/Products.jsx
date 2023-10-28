@@ -1,35 +1,40 @@
-import {useState } from "react";
+import { useState } from "react";
 import ProductItem from "./ProductItem";
-import {PlusOutlined,EditOutlined } from '@ant-design/icons';
+import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import Add from "./Add";
 import { useNavigate } from "react-router-dom";
 
-const Products = ({categories, filtered, products, setProducts }) => {
-  const navigate = useNavigate()
-  
+const Products = ({ categories, filtered, products, setProducts, search }) => {
+  const navigate = useNavigate();
+
   //modal
   const [isAddModalOpen, setIsisAddModalOpen] = useState(false);
   // const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-
-
-
-
   return (
     <div className="products-wrapper gap-4 grid grid-cols-card">
-      {
-        filtered.map((item) => (
+      {filtered
+        .filter((product) => product.title.toLowerCase().includes(search))
+        .map((item) => ( //--> filitreledikten sonra map le demiş oluyoruz
           <ProductItem item={item} key={item._id} />
-        ))
-      }
+        ))}
 
-      <div onClick={()=> {setIsisAddModalOpen(true)}} className="products-item border bg-purple-500 hover:shadow-lg cursor-pointer transition-all select-none flex items-center justify-center md:text-4xl text-2xl text-white hover:opacity-80 min-h-[188px]">
+      <div
+        onClick={() => {
+          setIsisAddModalOpen(true);
+        }}
+        className="products-item border bg-purple-500 hover:shadow-lg cursor-pointer transition-all select-none flex items-center justify-center md:text-4xl text-2xl text-white hover:opacity-80 min-h-[188px]"
+      >
         <PlusOutlined />
       </div>
 
-
-{/* burada navigate işlemini Link ile değilde useNavigate ile kullandım */}
-      <div onClick={()=> {navigate("/products")}} className="products-item border bg-amber-500 hover:shadow-lg cursor-pointer transition-all select-none flex items-center justify-center md:text-4xl text-2xl text-white hover:opacity-80 min-h-[188px]">
+      {/* burada navigate işlemini Link ile değilde useNavigate ile kullandım */}
+      <div
+        onClick={() => {
+          navigate("/products");
+        }}
+        className="products-item border bg-amber-500 hover:shadow-lg cursor-pointer transition-all select-none flex items-center justify-center md:text-4xl text-2xl text-white hover:opacity-80 min-h-[188px]"
+      >
         <EditOutlined />
       </div>
 
@@ -40,17 +45,8 @@ const Products = ({categories, filtered, products, setProducts }) => {
         setProducts={setProducts}
         products={products}
       />
-
-
-
-
-
     </div>
   );
 };
 
 export default Products;
-
-
-
-
