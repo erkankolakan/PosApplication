@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import ProductItem from "./ProductItem";
 import {PlusOutlined,EditOutlined } from '@ant-design/icons';
 import Add from "./Add";
