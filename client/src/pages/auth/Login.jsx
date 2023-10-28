@@ -27,6 +27,7 @@ const Login = () => {
             email: user.email,
           })
         );
+        
         message.success("Giriş işlemi başarılı");
         setLoading(false);
         navigate("/");

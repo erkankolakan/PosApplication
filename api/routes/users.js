@@ -1,6 +1,7 @@
 const User = require("../models/User")
 const express = require("express")
 const router = express.Router()
+const auth = require("../middleware/auth")
 
 router.get("/get-all" , async(req, res) => {
 
@@ -12,7 +13,7 @@ router.get("/get-all" , async(req, res) => {
     }
 })
 
-router.get("/" , async(req, res) => {
+router.get("/" ,async(req, res) => {
     const userId = req.body.userId
     try {
         const user = await User.findById(userId);
