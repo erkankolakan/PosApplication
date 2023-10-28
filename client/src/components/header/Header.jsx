@@ -9,14 +9,23 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Badge, Input } from "antd";
+import { Badge, Input, message } from "antd";
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const cart = useSelector((state) => state.cart); //-> productItem içisinde redux da buluna fonksiyon sayesinde cartItem array değişkeni içerisine tıkladığımız ürünleri ekledik, redux da global alanda olduğu için biz direk gelip burda cartItem değişkenimize erişebiliyoruz.
   const cartLength = cart.cartItem.length; // sepetde kaç ürün var onu öğreniyoruz.
+
+  const navigate = useNavigate();
+  const logOut = () => {
+    if (window.confirm("Çıkış yapmak istediğinize emin misiniz?")) {
+      localStorage.removeItem("posUser");
+      navigate("/login");
+      message.success("Çıkış işlemi başarılı.");
+    }
+  };
 
   return (
     <div className="border-b mb-6">
@@ -80,18 +89,15 @@ const Header = () => {
             <BarChartOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs  text-[10px]">İstatistikler</span>
           </Link>
-          <Link
-            to={"/"}
-            className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center"
-          >
-            <LogoutOutlined className="md:text-2xl text-xl" />
-            <span className="md:text-xs  text-[10px]">Çıkış</span>
-          </Link>
+          <div onClick={logOut}>
+            <Link className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center">
+              <LogoutOutlined className="md:text-2xl text-xl" />
+              <span className="md:text-xs  text-[10px]">Çıkış</span>
+            </Link>
+          </div>
         </div>
 
-
-        <Badge
-        count={cartLength} offset={[0, 1]} className="md:hidden flex">
+        <Badge count={cartLength} offset={[0, 1]} className="md:hidden flex">
           <Link
             to={"/cart"}
             className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center"
