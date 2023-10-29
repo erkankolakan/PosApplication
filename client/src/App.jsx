@@ -94,3 +94,5 @@ export const RouteControl = ({ children }) => {
     return <Navigate to="/login" />;
   }
 };
+
+// END
