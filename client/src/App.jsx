@@ -9,8 +9,21 @@ import StatisticPage from './pages/StatisticPage';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import ProductPage from './components/products/ProductPage';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function App() {
+
+  const cart = useSelector((state) => state.cart)
+  
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }
+  , [cart])
+
+
+  //bu işlemi her sayfada yapmaktansa herkesi kapsayan app.js de yapmak çokk daha mantıklı bu şekilde yapmazsak her sayfanın içinde setleme işlemi yapacaktık buna hiç gerek yok. Zaten tıkladıklarımız redux içindeki cartın içine gidiyor bizde burdan cart değişkenşnş alıp local storage kaydediyoruz.
+  
   return (
     <BrowserRouter>
       <Routes>
