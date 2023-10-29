@@ -4,7 +4,7 @@
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React Logo" width="50" height="50">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js Logo" width="50" height="50">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB Logo" width="50" height="50">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png" alt="Express.js Logo" width="50" height="50">
+    <img src="https://expressjs.com/images/express-facebook-share.png" alt="Express.js Logo" width="50" height="50">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS Logo" width="50" height="50">
     <img src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png" alt="Redux Toolkit Logo" width="50" height="50">
 </p>
