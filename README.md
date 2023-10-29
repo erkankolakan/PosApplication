@@ -8,6 +8,9 @@
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS Logo" width="50" height="50">
     <img src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png" alt="Redux Toolkit Logo" width="50" height="50">
 </p>
+<p>
+Hello everyone, this is the first application I developed as a fullstack. React, Tailwindcss, MongoDB, NodeJS, Expres.js and Redux Toolkit are used in my application. In this application, I wanted to make a POS application that businesses can use. The application is designed to be fully responsive. I will put a few images from the application below. You can also visit the application via the link.
+</p>
 
 
 
