@@ -9,10 +9,11 @@ import Highlighter from 'react-highlight-words';
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
-  const dispatch = useDispatch();
 
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
