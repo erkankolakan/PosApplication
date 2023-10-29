@@ -60,7 +60,7 @@ const Header = ({ setSearch }) => {
         <div className="menu-links flex justify-between items-center gap-7 md:static fixed z-50 bottom-0 md:w-auto w-screen md:bg-transparent bg-white left-0 md:border-t-0 border-t md:px-0 px-4 py-3 ">
           <Link
             to={"/"}
-            className="menu-link flex flex-col justify-center  hover:text-[#40a9ff] transition-all  items-center"
+            className={`flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center ${pathname === "/" && "active" }`}
           >
             <HomeOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs  text-[10px]">Anasayfa</span>
@@ -68,7 +68,7 @@ const Header = ({ setSearch }) => {
           <Badge count={cartLength} offset={[0, 1]} className="md:flex hidden">
             <Link
               to={"/cart"}
-              className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center"
+              className={`flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center ${pathname === "/cart" && "active" }`}
             >
               <ShoppingCartOutlined className="md:text-2xl text-xl" />
               <span className="md:text-xs  text-[10px]">Sepet</span>
@@ -76,27 +76,27 @@ const Header = ({ setSearch }) => {
           </Badge>
           <Link
             to={"/bills"}
-            className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center"
+            className={`flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center ${pathname === "/bills" && "active" }`}
           >
             <CopyOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs  text-[10px]">Fatura</span>
           </Link>
           <Link
             to={"/customers"}
-            className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center"
+            className={`flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center ${pathname === "/customers" && "active" }`}
           >
             <UserOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs  text-[10px]">Müşteriler</span>
           </Link>
           <Link
             to={"/statistic"}
-            className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center"
+            className={`flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center ${pathname === "/statistic" && "active" }`}
           >
             <BarChartOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs  text-[10px]">İstatistikler</span>
           </Link>
           <div onClick={logOut}>
-            <Link className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center">
+            <Link className={`flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center ${pathname === "/cibili" && "active" }`}>
               <LogoutOutlined className="md:text-2xl text-xl" />
               <span className="md:text-xs  text-[10px]">Çıkış</span>
             </Link>
@@ -106,7 +106,7 @@ const Header = ({ setSearch }) => {
         <Badge count={cartLength} offset={[0, 1]} className="md:hidden flex">
           <Link
             to={"/cart"}
-            className="menu-link flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center"
+            className={`flex flex-col justify-center hover:text-[#40a9ff] transition-all   items-center ${pathname === "/" && "active" }`}
           >
             <ShoppingCartOutlined className="text-2xl " />
             <span className="md:text-xs  text-[10px]">Sepet</span>

@@ -40,6 +40,10 @@ body{
     background: #f1f1f1; /* Kaydırma çubuğu yolu rengi */
   }
 
+.active {
+    @apply !text-[#40a9ff];
+  }
+
 @media (min-width:768px) {
 
   body{
