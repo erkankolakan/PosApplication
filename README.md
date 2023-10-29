@@ -1,5 +1,5 @@
 # PosApplication
-![React Icon](https://raw.githubusercontent.com/gilbarbara/react-icons/master/react-icons.svg)
+![React Icon]([https://raw.githubusercontent.com/gilbarbara/react-icons/master/react-icons.svg](https://w7.pngwing.com/pngs/18/497/png-transparent-black-and-blue-atom-icon-screenshot-react-javascript-responsive-web-design-github-angularjs-github-logo-electric-blue-signage.png))
 
 ![Ekran görüntüsü 2023-10-29 165125](https://github.com/erkankolakan/PosApplication/assets/126770706/86c1bfbe-bdc7-40b3-813e-84b9ccbdc129)
 ![Ekran görüntüsü 2023-10-29 165140](https://github.com/erkankolakan/PosApplication/assets/126770706/f3d8fd27-9561-4eb2-b231-fee0805ad723)
