@@ -1,22 +1,13 @@
 # PosApplication
 
-<div>
-<!-- React Logo -->
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React Logo" width="50" height="50">
-
-<!-- Node.js Logo -->
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js Logo" width="50" height="50">
-
-<!-- MongoDB Logo -->
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB Logo" width="50" height="50">
-
-<!-- Tailwind CSS Logo -->
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS Logo" width="50" height="50">
-
-<!-- Redux Toolkit Logo -->
-<img src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png" alt="Redux Toolkit Logo" width="50" height="50">
-
+<div style="display: flex; justify-content: center; align-items: center;">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React Logo" width="50" height="50">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js Logo" width="50" height="50">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB Logo" width="50" height="50">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS Logo" width="50" height="50">
+    <img src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png" alt="Redux Toolkit Logo" width="50" height="50">
 </div>
+
 
 ![Ekran görüntüsü 2023-10-29 165125](https://github.com/erkankolakan/PosApplication/assets/126770706/86c1bfbe-bdc7-40b3-813e-84b9ccbdc129)
 ![Ekran görüntüsü 2023-10-29 165140](https://github.com/erkankolakan/PosApplication/assets/126770706/f3d8fd27-9561-4eb2-b231-fee0805ad723)
