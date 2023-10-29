@@ -1,6 +1,10 @@
 # PosApplication
 
 <img src="https://user-images.githubusercontent.com/98990/89711240-4172a200-d989-11ea-8d51-4aaf922fa407.png" alt="React Icon" width="50" height="50" />
+<img src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png" alt="React Icon" width="50" height="50" />
+
+
+
 
 ![Ekran görüntüsü 2023-10-29 165125](https://github.com/erkankolakan/PosApplication/assets/126770706/86c1bfbe-bdc7-40b3-813e-84b9ccbdc129)
 ![Ekran görüntüsü 2023-10-29 165140](https://github.com/erkankolakan/PosApplication/assets/126770706/f3d8fd27-9561-4eb2-b231-fee0805ad723)
