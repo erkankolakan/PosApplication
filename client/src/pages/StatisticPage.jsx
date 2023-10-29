@@ -100,7 +100,7 @@ const StatisticPage = () => {
               Hoşgeldin
               <span className="text-xl text-green-700 font-semibold">
                 {" "}
-                {user.user.username}
+                {user.user}
               </span>
             </h2>
 
