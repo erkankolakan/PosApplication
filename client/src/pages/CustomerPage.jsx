@@ -171,12 +171,12 @@ const CustomerPage = () => {
         <h1 className="text-4xl text-center font-semibold  mb-4">Müşterilerim</h1>
 
         <Table 
-        scroll={{
-          x:1000,
-          y:300
-        }}
-        dataSource={billItems} columns={columns} bordered pagination={false} />
-
+          rowKey="_id"
+          scroll={{
+            x:1000,
+            y:300
+          }}
+          dataSource={billItems} columns={columns} bordered pagination={false} />
       </div>
 
 

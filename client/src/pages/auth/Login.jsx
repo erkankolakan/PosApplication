@@ -1,6 +1,6 @@
 import { Button, Carousel, Checkbox, Form, Input, message } from "antd";
 import React, { useState } from "react";
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
 
 const Login = () => {
@@ -19,15 +19,14 @@ const Login = () => {
 
       const user = await res.json(); //.json() metodu, bir HTTP yanıtının içeriğini JSON biçiminden JavaScript
 
-      if (res.status === 200) {
-        localStorage.setItem(
-          "posUser",
-          JSON.stringify({ //JSON.stringify() işlemi, JavaScript nesnelerini JSON biçimine dönüştürmek için kullanılır.
-            username: user.username,
-            email: user.email,
-          })
-        );
-        
+        if (res.status === 200) {
+          localStorage.setItem(
+            "posUser",
+            JSON.stringify({
+              username: user.username,
+              email: user.email,
+            })
+          );
         message.success("Giriş işlemi başarılı");
         setLoading(false);
         navigate("/");

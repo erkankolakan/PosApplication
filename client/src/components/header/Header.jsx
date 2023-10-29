@@ -9,14 +9,16 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { Badge, Input, message } from "antd";
 import { useSelector } from "react-redux";
 
-const Header = ({setSearch}) => {
+const Header = ({ setSearch }) => {
   const cart = useSelector((state) => state.cart); //-> productItem içisinde redux da buluna fonksiyon sayesinde cartItem array değişkeni içerisine tıkladığımız ürünleri ekledik, redux da global alanda olduğu için biz direk gelip burda cartItem değişkenimize erişebiliyoruz.
   const cartLength = cart.cartItem.length; // sepetde kaç ürün var onu öğreniyoruz.
+
+  const { pathname } = useLocation();
 
   const navigate = useNavigate();
   const logOut = () => {
@@ -42,7 +44,10 @@ const Header = ({setSearch}) => {
           {/* tailwindcss de md: yazarkan 768px ve üstünde olacakları söylemiş oluyoruz. */}
         </div>
 
-        <div className="header-search flex flex-1 justify-center">
+        <div
+          onClick={() => pathname !== "/" && navigate("/")}
+          className="header-search flex flex-1 justify-center"
+        >
           <Input
             className="rounded-full max-w-[800px]"
             size="large"

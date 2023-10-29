@@ -207,6 +207,7 @@ const BillPage = () => {
           columns={columns}
           bordered
           pagination={false}
+          rowKey="_id"
           scroll={{
             x:1000,
             y:300

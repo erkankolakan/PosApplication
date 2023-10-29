@@ -3,18 +3,21 @@ import { Button, Card, Input, Popconfirm, Space, Table } from "antd";
 import { useRef, useState } from "react";
 import CreateBill from "../components/carts/CreateBill";
 import { useDispatch, useSelector } from "react-redux";
-import { PlusCircleOutlined, MinusCircleOutlined,SearchOutlined } from "@ant-design/icons";
+import {
+  PlusCircleOutlined,
+  MinusCircleOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import { decrase, deleteCart, increase } from "../redux/cartSlice";
-import Highlighter from 'react-highlight-words';
+import Highlighter from "react-highlight-words";
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
-
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -23,12 +26,17 @@ const CartPage = () => {
   };
   const handleReset = (clearFilters) => {
     clearFilters();
-    setSearchText('');
+    setSearchText("");
   };
-  
 
   const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+      close,
+    }) => (
       <div
         style={{
           padding: 8,
@@ -39,11 +47,13 @@ const CartPage = () => {
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{
             marginBottom: 8,
-            display: 'block',
+            display: "block",
           }}
         />
         <Space>
@@ -95,7 +105,7 @@ const CartPage = () => {
     filterIcon: (filtered) => (
       <SearchOutlined
         style={{
-          color: filtered ? '#1677ff' : undefined,
+          color: filtered ? "#1677ff" : undefined,
         }}
       />
     ),
@@ -110,18 +120,17 @@ const CartPage = () => {
       searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{
-            backgroundColor: '#ffc069',
+            backgroundColor: "#ffc069",
             padding: 0,
           }}
           searchWords={[searchText]}
           autoEscape
-          textToHighlight={text ? text.toString() : ''}
+          textToHighlight={text ? text.toString() : ""}
         />
       ) : (
         text
       ),
   });
-
 
   const columns = [
     {
@@ -142,20 +151,19 @@ const CartPage = () => {
       title: "Ürün adı",
       dataIndex: "title",
       key: "title",
-      ...getColumnSearchProps("title")
+      ...getColumnSearchProps("title"),
     },
     {
       title: "Kategori",
       dataIndex: "category",
       key: "category",
-      ...getColumnSearchProps("category")
-
+      ...getColumnSearchProps("category"),
     },
     {
       title: "Ürün fiyatı",
       dataIndex: "price",
       key: "price",
-      sorter: (a, b) => a.price - b.price, //-> ürünleri fiyatına göre listememizi sağlayacak  
+      sorter: (a, b) => a.price - b.price, //-> ürünleri fiyatına göre listememizi sağlayacak
       render: (text) => {
         //bu text pricenin değerini alıyor
         return <span>{text.toFixed(2)}₺</span>;
@@ -232,13 +240,14 @@ const CartPage = () => {
       <Header />
       <div className="px-6">
         <Table
+          rowKey="_id"
           dataSource={cart.cartItem}
           columns={columns}
           bordered
           pagination={false}
           scroll={{
-            x:1200,
-            y:300,
+            x: 1200,
+            y: 300,
           }}
         />
 
@@ -262,7 +271,9 @@ const CartPage = () => {
             </div>
             <div className="flex justify-between font-semibold">
               <span>Toplam</span>
-              <span>{ (cart.total + (cart.tax * cart.total) / 100).toFixed(2)}₺</span>
+              <span>
+                {(cart.total + (cart.tax * cart.total) / 100).toFixed(2)}₺
+              </span>
             </div>
 
             <Button
