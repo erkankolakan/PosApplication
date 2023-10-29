@@ -1,21 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "../components/header/Header";
-import {Button, Input, Space, Table } from "antd";
-import Highlighter from 'react-highlight-words';
+import { Button, Input, Space, Spin, Table } from "antd";
+import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 
-
-
-
 const CustomerPage = () => {
+  const [billItems, setBillItems] = useState();
 
-  const [billItems, setBillItems] = useState([]);
-
-
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
-
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -24,12 +18,17 @@ const CustomerPage = () => {
   };
   const handleReset = (clearFilters) => {
     clearFilters();
-    setSearchText('');
+    setSearchText("");
   };
-  
 
   const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+      close,
+    }) => (
       <div
         style={{
           padding: 8,
@@ -40,11 +39,13 @@ const CustomerPage = () => {
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{
             marginBottom: 8,
-            display: 'block',
+            display: "block",
           }}
         />
         <Space>
@@ -96,7 +97,7 @@ const CustomerPage = () => {
     filterIcon: (filtered) => (
       <SearchOutlined
         style={{
-          color: filtered ? '#1677ff' : undefined,
+          color: filtered ? "#1677ff" : undefined,
         }}
       />
     ),
@@ -111,12 +112,12 @@ const CustomerPage = () => {
       searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{
-            backgroundColor: '#ffc069',
+            backgroundColor: "#ffc069",
             padding: 0,
           }}
           searchWords={[searchText]}
           autoEscape
-          textToHighlight={text ? text.toString() : ''}
+          textToHighlight={text ? text.toString() : ""}
         />
       ) : (
         text
@@ -135,53 +136,53 @@ const CustomerPage = () => {
     })();
   }, []);
 
-
-
   const columns = [
     {
       title: "Müşteri Adı",
       dataIndex: "customerName",
       key: "customerName",
-      ...getColumnSearchProps("customerName")
+      ...getColumnSearchProps("customerName"),
     },
     {
       title: "Telefon Numarası",
       dataIndex: "costomerPhoneNumber",
       key: "costomerPhoneNumber",
-      ...getColumnSearchProps("costomerPhoneNumber")
-
+      ...getColumnSearchProps("costomerPhoneNumber"),
     },
     {
       title: "İşlem Tarihi",
       dataIndex: "createdAt",
       key: "createdAt",
       render: (text) => {
-          return <span>{new Date(text).toLocaleDateString()}</span>;
-        },
-
+        return <span>{new Date(text).toLocaleDateString()}</span>;
+      },
     },
   ];
-
-
 
   return (
     <>
       <Header />
-      <div className="px-6">
-        <h1 className="text-4xl text-center font-semibold  mb-4">Müşterilerim</h1>
-
-        <Table 
-          rowKey="_id"
-          scroll={{
-            x:1000,
-            y:300
-          }}
-          dataSource={billItems} columns={columns} bordered pagination={false} />
-      </div>
-
-
+      <h1 className="text-4xl text-center font-semibold  mb-4">Müşterilerim</h1>
+      {billItems ? (
+        <div className="px-6">
+          <Table
+            rowKey="_id"
+            scroll={{
+              x: 1000,
+              y: 300,
+            }}
+            dataSource={billItems}
+            columns={columns}
+            bordered
+            pagination={false}
+          />
+        </div>
+      ) : (
+        <div className="flex justify-center items-center h-[70vh]">
+          <Spin size="large" />
+        </div>
+      )}
     </>
-    
   );
 };
 
