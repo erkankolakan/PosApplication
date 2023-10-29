@@ -1,8 +1,19 @@
 # PosApplication
 
-<img src="https://user-images.githubusercontent.com/98990/89711240-4172a200-d989-11ea-8d51-4aaf922fa407.png" alt="React Icon" width="50" height="50" />
-<img src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png" alt="React Icon" width="50" height="50" />
+<!-- React Logo -->
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React Logo" width="50" height="50">
 
+<!-- Node.js Logo -->
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js Logo" width="50" height="50">
+
+<!-- MongoDB Logo -->
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB Logo" width="50" height="50">
+
+<!-- Tailwind CSS Logo -->
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS Logo" width="50" height="50">
+
+<!-- Redux Toolkit Logo -->
+<img src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png" alt="Redux Toolkit Logo" width="50" height="50">
 
 
 
